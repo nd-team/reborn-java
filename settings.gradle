@@ -1,0 +1,40 @@
+rootProject.name = 'reborn'
+
+//#constant 通用模块
+include ':common:common-api'
+include ':common:common-consumer'
+include ':common:common-provider'
+include ':common:common-jpa'
+include ':common:common-utils'
+include ':common:common-redis'
+// #template 生成模版 tanghaixiang
+include ':modules:template:template-api'
+include ':modules:template:template-provider'
+// #user 用户模块 liguiqin
+include ':modules:user:user-api'
+include ':modules:user:user-consumer'
+include ':modules:user:user-provider'
+// #storage 存储模块 liguiqin
+include ':modules:storage:storage-api'
+include ':modules:storage:storage-consumer'
+include ':modules:storage:storage-provider'
+// #commodity 商品模块 liguiqin
+include ':modules:commodity:commodity-api'
+include ':modules:commodity:commodity-consumer'
+include ':modules:commodity:commodity-provider'
+// #order 订单模块 liguiqin
+include ':modules:order:order-api'
+include ':modules:order:order-consumer'
+include ':modules:order:order-provider'
+// #warehouse 仓库模块 liguiqin
+include ':modules:warehouse:warehouse-api'
+include ':modules:warehouse:warehouse-consumer'
+include ':modules:warehouse:warehouse-provider'
+// #shop 店铺模块 liguiqin
+include ':modules:shop:shop-api'
+include ':modules:shop:shop-consumer'
+include ':modules:shop:shop-provider'
+// #purchase 采购模块 liguiqin
+include ':modules:purchase:purchase-api'
+include ':modules:purchase:purchase-consumer'
+include ':modules:purchase:purchase-provider'

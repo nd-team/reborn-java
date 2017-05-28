@@ -1,0 +1,26 @@
+模块名:purchase
+类名:Purchase
+作者:liguiqin
+描述:采购
+
+#参数[变量类型  变量名 ]
+#parameter--------------
+
+(
+String systemNO 系统编号;
+String purchaseNO 采购单号;
+Warehouse warehouse 仓库;
+String supplier 供应商;
+String amount 数量;
+Double unitPrice 单价;
+Double totalPrice 总价;
+Double purchasePrice 采购价;
+Double otherPrice 其他费用;
+Double total 合计;
+LocalDateTime arrivalTime 预计到货时间;
+String remark 备注;
+String waybillNO 运货单;
+PurchaseStatus purchaseStatus 采购单状态;
+PurchaseWay purchaseWay 采购方式;
+)
+

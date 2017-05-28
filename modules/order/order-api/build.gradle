@@ -1,0 +1,6 @@
+apply from: '../../../config.gradle'
+dependencies { 
+compile project(":common:common-api")
+compile project(":modules:warehouse:warehouse-api")
+compile project(":modules:shop:shop-api")
+compile project(":common:common-utils")}
