@@ -26,17 +26,4 @@ public class RegisterTest {
     private UserRegisterSer userRegisterAPI;
 
 
-    @Test
-    public void existUsername() throws SerException {
-        boolean users = userRegisterAPI.existUsername("liguiqin");
-        System.out.println(users);
-    }
-
-    @Test
-    public void sendCodeToPhone() throws SerException {
-        String phone = "123456";
-        userRegisterAPI.verifyAndSendCode(phone);
-    }
-
-
 }

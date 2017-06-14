@@ -44,9 +44,6 @@ public class QueryTest {
         User user = new User();
         user.setUsername("黎");
         user.setPassword(PasswordHash.createHash("123458"));
-        user.setPhone("13457910208");
-        user.setNickname("xiaoming萨斯");
-        user.setEmployeeNumber("1111128");
         userAPI.save(user);
 
     }

@@ -4,18 +4,17 @@ import com.bjike.reborn.common.api.exception.ActException;
 import com.bjike.reborn.common.api.exception.SerException;
 import com.bjike.reborn.common.api.restful.Result;
 import com.bjike.reborn.common.consumer.restful.ActResult;
+import com.bjike.reborn.common.utils.token.IpUtil;
 import com.bjike.reborn.user.api.UserLoginAPI;
 import com.bjike.reborn.user.enums.LoginType;
 import com.bjike.reborn.user.to.UserLoginTO;
 import com.bjike.reborn.user.utils.CheckMobile;
-import com.bjike.reborn.user.utils.IpUtils;
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,7 +50,7 @@ public class LoginAct {
                 type = LoginType.MOBILE;
             }
             loginTO.setLoginType(type);
-            loginTO.setIp(IpUtils.getIp(request));
+            loginTO.setIp(IpUtil.getIp(request));
             String token = userLoginAPI.login(loginTO);
             return ActResult.initialize(token);
 

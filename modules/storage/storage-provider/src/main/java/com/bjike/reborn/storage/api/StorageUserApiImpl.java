@@ -46,9 +46,14 @@ public class StorageUserApiImpl implements StorageUserAPI {
     public String getCurrentModule(String storageToken) throws SerException {
         return storageUserSer.getCurrentModule(storageToken);
     }
+
     @Override
     public String getCurrentSysNO(String storageToken) throws SerException {
         return storageUserSer.getCurrentSysNO(storageToken);
     }
 
+    @Override
+    public String getStorageToken(String account, String password, String moduleName,String userToken) throws SerException {
+        return storageUserSer.getStorageToken(account,password,moduleName,userToken);
+    }
 }

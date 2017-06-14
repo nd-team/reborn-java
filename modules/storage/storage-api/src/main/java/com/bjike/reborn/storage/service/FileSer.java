@@ -19,8 +19,6 @@ import java.util.List;
  * @Copy: [ com.bjike ]
  */
 public interface FileSer extends Ser<File, FileDTO> {
-
-
     /**
      * 文件列表
      *
@@ -36,7 +34,8 @@ public interface FileSer extends Ser<File, FileDTO> {
      *
      * @param inputStreams 上传文件，文件信息流
      */
-    default void upload(List<InputStream> inputStreams) throws SerException {
+    default List<FileBO> upload(List<InputStream> inputStreams) throws SerException {
+        return null;
     }
 
 
@@ -54,10 +53,10 @@ public interface FileSer extends Ser<File, FileDTO> {
     /**
      * 删除文件
      *
-     * @param path         文件或者文件夹路径
+     * @param paths        文件或者文件夹路径
      * @param storageToken 登录令牌
      */
-    default void delFile(String path, String storageToken) throws SerException {
+    default void delFile(String[] paths, String storageToken) throws SerException {
 
     }
 

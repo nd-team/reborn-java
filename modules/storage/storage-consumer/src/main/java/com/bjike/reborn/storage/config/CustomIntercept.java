@@ -32,7 +32,7 @@ public class CustomIntercept implements Interceptor {
     @Override
     public List<HIInfo> customerInterceptors() {
 
-        HIInfo storageInfo = new HIInfo(new StorageIntercept(storageUserAPI), "/**");
+        HIInfo storageInfo = new HIInfo(new StorageIntercept(storageUserAPI,false), "/**");
         HIInfo loginInfo = new HIInfo(new LoginIntercept(userAPI), "/**/register/**");
 
         /**

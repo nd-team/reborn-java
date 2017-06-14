@@ -1,6 +1,7 @@
 package com.bjike.reborn.user.api;
 
 import com.bjike.reborn.common.api.exception.SerException;
+import com.bjike.reborn.user.annotation.Operate;
 import com.bjike.reborn.user.to.UserLoginTO;
 
 /**

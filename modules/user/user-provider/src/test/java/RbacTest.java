@@ -69,7 +69,6 @@ public class RbacTest {
     public void addUserRole() throws SerException {
         Role role = roleAPI.findById("524fa88b-086f-4d9c-b962-4c6a3810a454");
         User user = null;
-        userAPI.findByPhone("18097910240");
         UserRole userRole = new UserRole();
         userRole.setRole(role);
         userRole.setUser(user);
@@ -154,8 +153,6 @@ public class RbacTest {
     @Test
     public void findAllPermissionByUserId() throws SerException {
 
-        List<PermissionBO> permissions = permissionAPI.findByUserId("672551a4-4082-4d3f-9314-26851153b3c3");
-        System.out.println(permissions);
     }
 
 

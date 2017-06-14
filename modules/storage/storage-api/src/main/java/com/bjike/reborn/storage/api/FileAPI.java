@@ -31,7 +31,8 @@ public interface FileAPI {
      *
      * @param inputStreams 上传文件及信息
      */
-    default void upload(List<InputStream> inputStreams) throws SerException {
+    default List<FileBO> upload(List<InputStream> inputStreams) throws SerException {
+        return null;
     }
 
 
@@ -47,9 +48,10 @@ public interface FileAPI {
     /**
      * 删除文件
      *
-     * @param fileInfo 文件信息
+     * @param paths 文件路径
+     * @param storageToken 登录令牌
      */
-    default void delFile(FileInfo fileInfo) throws SerException {
+    default void delFile(String storageToken,String[] paths) throws SerException {
 
     }
 

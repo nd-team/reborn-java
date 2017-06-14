@@ -3,7 +3,6 @@ package com.bjike.reborn.purchase.to;
 import com.bjike.reborn.common.api.to.BaseTO;
 import com.bjike.reborn.purchase.enums.PurchaseStatus;
 import com.bjike.reborn.purchase.enums.PurchaseWay;
-import com.bjike.reborn.warehouse.entity.Warehouse;
 
 import java.time.LocalDateTime;
 
@@ -28,10 +27,6 @@ public class PurchaseTO extends BaseTO {
      */
     private String purchaseNO;
 
-    /**
-     * 仓库
-     */
-    private Warehouse warehouse;
 
     /**
      * 供应商
@@ -108,14 +103,6 @@ public class PurchaseTO extends BaseTO {
 
     public void setPurchaseNO(String purchaseNO) {
         this.purchaseNO = purchaseNO;
-    }
-
-    public Warehouse getWarehouse() {
-        return warehouse;
-    }
-
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
     }
 
     public String getSupplier() {

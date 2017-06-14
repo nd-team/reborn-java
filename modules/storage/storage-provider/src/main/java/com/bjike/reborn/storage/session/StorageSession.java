@@ -6,6 +6,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -72,4 +74,21 @@ public class StorageSession {
         throw TOKEN_NOT_NULL;
     }
 
+    public static String getToken(String account) {
+        try {
+            if (StringUtils.isNotBlank(account)) {
+                ConcurrentMap<String, LoginUser> map = STORAGE_SESSION.asMap();
+                for (Map.Entry<String, LoginUser> entry : map.entrySet()) {
+                    if (entry.getValue().getAccount().equals(account)) {
+                        return entry.getKey();
+                    }
+                }
+                return null;
+            }
+        } catch (Exception e) {
+            return null;
+        }
+
+        throw TOKEN_NOT_NULL;
+    }
 }

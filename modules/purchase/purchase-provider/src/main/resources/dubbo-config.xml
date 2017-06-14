@@ -18,7 +18,7 @@
     <dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}"/>
 
     <!--发布接口,供其他模块调用-->
-    <dubbo:service  interface="com.bjike.reborn.warehouse.api.WarehouseAPI"  ref="warehouseApiImpl" />
-    <dubbo:reference  validation="true"  interface="com.bjike.reborn.purchase.api.PurchaseAPI" id="purchaseApiImpl"/>
+    <dubbo:service  interface="com.bjike.reborn.purchase.api.PurchaseAPI"  ref="purchaseApiImpl" />
+    <dubbo:reference  validation="true"  interface="com.bjike.reborn.warehouse.api.WarehouseAPI" id="warehouseApiImpl"/>
 
 </beans>

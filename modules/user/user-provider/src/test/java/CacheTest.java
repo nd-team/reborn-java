@@ -75,7 +75,6 @@ public class CacheTest {
             User user = new User();
             user.setUsername("666hqw_test");
             user.setPassword(PasswordHash.createHash("123456"));
-            user.setPhone("1809791024");
             users.add(user);
         } catch (Exception e) {
             e.printStackTrace();

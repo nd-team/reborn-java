@@ -2,6 +2,7 @@ package com.bjike.reborn.user.service;
 
 import com.bjike.reborn.common.api.exception.SerException;
 import com.bjike.reborn.common.api.service.Ser;
+import com.bjike.reborn.user.annotation.Operate;
 import com.bjike.reborn.user.dto.UserDTO;
 import com.bjike.reborn.user.entity.User;
 import com.bjike.reborn.user.to.UserLoginTO;
@@ -25,6 +26,7 @@ public interface UserLoginSer extends Ser<User, UserDTO> {
      * @return token 登录用户唯一令牌
      * @throws SerException
      */
+    @Operate(name = "用户登录")
     String login(UserLoginTO loginTO) throws SerException;
 
     /**

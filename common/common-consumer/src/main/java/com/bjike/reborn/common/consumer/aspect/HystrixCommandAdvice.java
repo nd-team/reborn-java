@@ -34,7 +34,6 @@ import java.util.Optional;
  */
 
 public class HystrixCommandAdvice {
-
     @Pointcut("@annotation(org.springframework.web.bind.annotation.RequestMapping)" +
             " || @annotation(org.springframework.web.bind.annotation.GetMapping)" +
             " || @annotation(org.springframework.web.bind.annotation.PostMapping)" +
@@ -57,14 +56,16 @@ public class HystrixCommandAdvice {
             @Override
             protected Object run() throws Exception {
                 try {
-                    RpcContext.getContext().setAttachment(RpcCommon.USER_TOKEN,userToken);
+                    RpcContext.getContext().setAttachment(RpcCommon.USER_TOKEN, userToken);
                     return pjp.proceed();
                 } catch (Throwable throwable) {
                     if (throwable instanceof ActException) {
                         throw new HystrixBadRequestException(throwable.getMessage(), throwable);
                     } else {
+                        handleJapException(throwable);
                         throwable.printStackTrace();
-                        throw (Exception) throwable;}
+                        throw (Exception) throwable;
+                    }
                 }
             }
 
@@ -115,6 +116,45 @@ public class HystrixCommandAdvice {
                     .andCommandKey(HystrixCommandKey.Factory.asKey("key/" + (StringUtils.isBlank(commandKey) ? groupName : commandKey)));
         }
         return setter;
+    }
+
+    /**
+     * 处理数据库异常
+     *
+     * @param throwable
+     */
+    private void handleJapException(Throwable throwable) {
+        String msg = throwable.getMessage();
+        String result = null;
+        result = StringUtils.substringAfter(msg, "Caused by: java.sql.SQLIntegrityConstraintViolationException:");
+
+        if (StringUtils.isNotBlank(result)) {
+            /**
+             * 处理唯一约束
+             */
+            result = StringUtils.substringBefore(result, "' for key");
+            result = StringUtils.substringAfter(result, "Duplicate entry '");
+            if (StringUtils.isNotBlank(result)) {
+                throw new HystrixBadRequestException("[" + result + "]该名称已被占用!", throwable);
+            }
+            /**
+             * 处理非空约束
+             */
+
+            result = StringUtils.substringBefore(result, "' cannot be null");
+            result = StringUtils.substringAfter(result, "Column '");
+            if (StringUtils.isNotBlank(result)) {
+                throw new HystrixBadRequestException("[" + result + "]不能为空!", throwable);
+            }
+        }
+        result = StringUtils.substringAfter(msg, "com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column '");
+        if (StringUtils.isNotBlank(result)) {
+            /**
+             * 数据长度
+             */
+            result = StringUtils.substringBefore(result, "' at row");
+            throw new HystrixBadRequestException("[" + result + "]超出长度范围!", throwable);
+        }
     }
 
 }

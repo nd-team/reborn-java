@@ -2,7 +2,6 @@ package com.bjike.reborn.purchase.vo;
 
 import com.bjike.reborn.purchase.enums.PurchaseStatus;
 import com.bjike.reborn.purchase.enums.PurchaseWay;
-import com.bjike.reborn.warehouse.entity.Warehouse;
 
 import java.time.LocalDateTime;
 
@@ -31,10 +30,7 @@ public class PurchaseVO {
      */
     private String purchaseNO;
 
-    /**
-     * 仓库
-     */
-    private Warehouse warehouse;
+
 
     /**
      * 供应商
@@ -121,13 +117,6 @@ public class PurchaseVO {
         this.purchaseNO = purchaseNO;
     }
 
-    public Warehouse getWarehouse() {
-        return warehouse;
-    }
-
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
-    }
 
     public String getSupplier() {
         return supplier;

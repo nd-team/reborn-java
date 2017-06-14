@@ -41,7 +41,6 @@ public class UserLoginLogTest {
         loginLog.setLoginType(LoginType.MOBILE);
         loginLog.setId("11s1111");
         loginLog.setLoginTime(LocalDateTime.now());
-        UserBO userBO = userAPI.findByAccountNumber("liguiqin");
 
     }
 

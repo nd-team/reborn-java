@@ -63,13 +63,20 @@ public interface StorageUserAPI {
     default String getCurrentModule(String storageToken) throws SerException{
         return null;
     }
-
     /**
      * 获取当前登录模块系统编号
      * @return
      * @throws SerException
      */
     default String getCurrentSysNO(String storageToken) throws SerException{
+        return null;
+    }
+    /**
+     * 获取当前模块登录令牌
+     * @return
+     * @throws SerException
+     */
+    default String getStorageToken(String account,String password,String moduleName,String userToken) throws SerException{
         return null;
     }
 }

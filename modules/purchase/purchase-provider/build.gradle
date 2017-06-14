@@ -29,6 +29,7 @@ dependencies {
     compile project(":common:common-jpa")
     compile project(":common:common-provider")
     compile project(":modules:purchase:purchase-api")
+    compile project(":modules:warehouse:warehouse-api")
     compile project(":common:common-utils")
 }
 

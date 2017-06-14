@@ -22,6 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 存储模块用户业务实现
@@ -41,21 +42,23 @@ public class StorageUserSerImpl extends ServiceImpl<StorageUser, StorageUserDTO>
     @Autowired
     private UserAPI userAPI;
 
+    @Transactional
     @Override
     public StorageUserBO register(StorageUserTO storageUserTO) throws SerException {
+        String sysNO = userAPI.currentSystemNO(storageUserTO.getUserToken());
         StorageUserDTO dto = new StorageUserDTO();
-        dto.getConditions().add(Restrict.or("moduleName", storageUserTO.getModuleName()));
-        dto.getConditions().add(Restrict.or("account", storageUserTO.getAccount()));
+        dto.getConditions().add(Restrict.eq("moduleName", storageUserTO.getModuleName()));
+        dto.getConditions().add(Restrict.eq("account", storageUserTO.getAccount()));
+        dto.getConditions().add(Restrict.eq(SYS_NO, sysNO));
         StorageUser storageUser = null;
         if (null == super.findOne(dto)) {
             storageUser = BeanTransform.copyProperties(storageUserTO, StorageUser.class);
-            storageUser.setStatus(Status.THAW);
+            storageUser.setSystemNO(sysNO);
             try {
                 storageUser.setPassword(PasswordHash.createHash(storageUser.getPassword()));
             } catch (Exception e) {
                 throw new SerException(e.getMessage());
             }
-            storageUser.setSystemNO(userAPI.currentSystemNO(storageUserTO.getUserToken()));
             storageUser = super.save(storageUser);
         } else {
             throw new SerException("账号名或者模块名已存在！");
@@ -129,5 +132,32 @@ public class StorageUserSerImpl extends ServiceImpl<StorageUser, StorageUserDTO>
     @Override
     public String getCurrentSysNO(String storageToken) throws SerException {
         return this.getCurrentUser(storageToken).getSystemNO();
+    }
+
+    @Transactional
+    @Override
+    public String getStorageToken(String account, String password, String moduleName,String userToken) throws SerException {
+        String token = StorageSession.getToken(account);
+        if (null != token) {
+            return token;
+        } else {
+            StorageUserDTO dto = new StorageUserDTO();
+            dto.getConditions().add(Restrict.eq("account", account));
+            StorageUser user = super.findOne(dto);
+            if (null != user) {
+                token = login(user);
+            } else {
+                StorageUserTO to = new StorageUserTO();
+                to.setAccount(account);
+                to.setModuleName(moduleName);
+                to.setPassword(password);
+                to.setUserToken(userToken);
+                StorageUserBO bo = register(to);
+                user = new StorageUser();
+                BeanTransform.copyProperties(bo, user,true);
+                token = login(user);
+            }
+        }
+        return token;
     }
 }

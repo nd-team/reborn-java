@@ -3,9 +3,10 @@ package com.bjike.reborn.purchase.entity;
 import com.bjike.reborn.common.api.entity.BaseEntity;
 import com.bjike.reborn.purchase.enums.PurchaseStatus;
 import com.bjike.reborn.purchase.enums.PurchaseWay;
-import com.bjike.reborn.warehouse.entity.Warehouse;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 
@@ -37,9 +38,8 @@ public class Purchase extends BaseEntity {
     /**
      * 仓库
      */
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "warehouse_id", columnDefinition = "VARCHAR(36) COMMENT '仓库' ")
-    private Warehouse warehouse;
+    @Column(name = "warehouseId", nullable = false, columnDefinition = "VARCHAR(36)   COMMENT '仓库'")
+    private String warehouseId;
 
     /**
      * 供应商
@@ -130,12 +130,12 @@ public class Purchase extends BaseEntity {
         this.purchaseNO = purchaseNO;
     }
 
-    public Warehouse getWarehouse() {
-        return warehouse;
+    public String getWarehouseId() {
+        return warehouseId;
     }
 
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
+    public void setWarehouseId(String warehouseId) {
+        this.warehouseId = warehouseId;
     }
 
     public String getSupplier() {

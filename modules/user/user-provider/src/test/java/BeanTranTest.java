@@ -29,9 +29,7 @@ public class BeanTranTest {
     public void BOTransformEntity() {
         UserBO bo = new UserBO();
 //        bo.setCreateTime(DateUtil.dateToString(LocalDateTime.now()));
-        bo.setPhone("1332");
         bo.setUsername("liguiqin");
-        bo.setCreateTime("2017-11-10 12:12:11");
         User user = BeanTransform.copyProperties(bo, User.class, true);
         System.out.println(JSON.toJSONString(user));
     }
@@ -39,9 +37,7 @@ public class BeanTranTest {
     public static void main(String[] args) {
         UserBO bo = new UserBO();
 //        bo.setCreateTime(DateUtil.dateToString(LocalDateTime.now()));
-        bo.setPhone("1332");
         bo.setUsername("liguiqin");
-        bo.setCreateTime("2017-11-10 12:12:11");
         User user = BeanTransform.copyProperties(bo, User.class, true);
         System.out.println(JSON.toJSONString(user));
     }
@@ -52,7 +48,6 @@ public class BeanTranTest {
     public void EntityTransformBO() {
         User user = new User();
         user.setCreateTime(LocalDateTime.now());
-        user.setPhone("1332");
         user.setUsername("liguiqin");
 
         //方式1
@@ -71,12 +66,10 @@ public class BeanTranTest {
     public void TransformList() {
         User user1 = new User();
         user1.setCreateTime(LocalDateTime.now().plusDays(1));
-        user1.setPhone("888");
         user1.setUsername("liguiqin1");
 
         User user2 = new User();
         user2.setCreateTime(LocalDateTime.now().plusDays(2));
-        user2.setPhone("999");
         user2.setUsername("liguiqin2");
 
         List<User> users = Arrays.asList(user1, user2);
@@ -87,13 +80,9 @@ public class BeanTranTest {
     @Test
     public void Transform() {
         UserBO userBO = new UserBO();
-        userBO.setCreateTime(DateUtil.dateToString(LocalDateTime.now()));
-        userBO.setPhone("888");
         userBO.setUsername("liguiqin1");
 
         UserBO userBO2 = new UserBO();
-        userBO2.setCreateTime(DateUtil.dateToString(LocalDateTime.now()));
-        userBO2.setPhone("999");
         userBO2.setUsername("liguiqin2");
 
         List<UserBO> userBOS = Arrays.asList(userBO, userBO2);

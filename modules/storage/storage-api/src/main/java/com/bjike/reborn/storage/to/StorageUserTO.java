@@ -45,8 +45,10 @@ public class StorageUserTO extends BaseTO {
      */
     private Status status;
 
+    /**
+     * 用户令牌
+     */
     private String userToken;
-
 
     public String getModuleName() {
         return moduleName;

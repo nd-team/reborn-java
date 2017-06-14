@@ -47,7 +47,7 @@ public class UserTest {
      */
     @Test
     public void verifyByAccountNumber() throws SerException {
-        System.out.println(null != userAPI.findByAccountNumber("liguiqin"));
+//        System.out.println(null != userAPI.findByAccountNumber("liguiqin"));
 
     }
 
