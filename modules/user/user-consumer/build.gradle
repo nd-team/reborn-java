@@ -38,11 +38,12 @@ dependencies {
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
     compile project(":modules:user:user-api")
-    compile project(":modules:user:user-api")
     compile("org.springframework.boot:spring-boot-starter-web"){
         exclude group: 'com.fasterxml.jackson.core'
     }
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.5.3.RELEASE'
+    compile(group: 'org.apache.kafka', name: 'kafka_2.10', version: '0.10.2.0') {
+        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    }
 }
 
 

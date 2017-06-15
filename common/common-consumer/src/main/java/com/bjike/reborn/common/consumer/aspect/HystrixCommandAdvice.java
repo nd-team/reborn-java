@@ -52,11 +52,13 @@ public class HystrixCommandAdvice {
 
     private HystrixCommand<Object> wrapWithHystrixCommnad(final ProceedingJoinPoint pjp) {
         String userToken = RpcContext.getContext().getAttachment(RpcCommon.USER_TOKEN);
+        String ip = RpcContext.getContext().getAttachment(RpcCommon.IP);
         return new HystrixCommand<Object>(setter(pjp)) {
             @Override
             protected Object run() throws Exception {
                 try {
                     RpcContext.getContext().setAttachment(RpcCommon.USER_TOKEN, userToken);
+                    RpcContext.getContext().setAttachment(RpcCommon.IP, ip);
                     return pjp.proceed();
                 } catch (Throwable throwable) {
                     if (throwable instanceof ActException) {

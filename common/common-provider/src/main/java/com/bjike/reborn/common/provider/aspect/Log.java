@@ -1,18 +1,15 @@
-package com.bjike.reborn.user.to;
+package com.bjike.reborn.common.provider.aspect;
 
-import com.bjike.reborn.common.api.to.BaseTO;
+import java.io.Serializable;
 
 /**
- * 操作日志
- *
- * @Author: [ liguiqin ]
- * @Date: [ 2017-05-28 03:29 ]
- * @Description: [ 操作日志 ]
- * @Version: [ v1.0.0 ]
- * @Copy: [ com.bjike ]
+ * @Author: [liguiqin]
+ * @Date: [2017-06-14 17:25]
+ * @Description: [ ]
+ * @Version: [1.0.0]
+ * @Copy: [com.bjike]
  */
-public class OperateLogTO extends BaseTO {
-
+public class Log implements Serializable {
     /**
      * 模块
      */

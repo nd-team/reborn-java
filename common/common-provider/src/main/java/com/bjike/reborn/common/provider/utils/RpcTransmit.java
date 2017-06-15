@@ -13,13 +13,7 @@ import com.bjike.reborn.common.provider.constant.RpcCommon;
  * @Copy: [com.bjike]
  */
 public class RpcTransmit {
-    /**
-     * 传递用户token
-     */
-    public static void transmitUserToken() {
-        String token = RpcContext.getContext().getAttachment(RpcCommon.USER_TOKEN);
-        RpcContext.getContext().setAttachment(RpcCommon.USER_TOKEN, token);
-    }
+
 
     /**
      * 传递用户token
@@ -37,6 +31,11 @@ public class RpcTransmit {
         return RpcContext.getContext().getAttachment(RpcCommon.USER_TOKEN);
     }
 
-
+    /**
+     * 获取用户ip
+     */
+    public static String getUserIP() {
+        return RpcContext.getContext().getAttachment(RpcCommon.IP);
+    }
 
 }

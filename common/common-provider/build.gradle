@@ -44,4 +44,8 @@ dependencies {
         exclude group: 'org.slf4j', module: 'slf4j-api'
         exclude group: 'log4j', module: 'log4j'
     }
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: "$commons_version"
+    compile(group: 'org.apache.kafka', name: 'kafka_2.10', version: '0.10.2.0') {
+        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    }
 }

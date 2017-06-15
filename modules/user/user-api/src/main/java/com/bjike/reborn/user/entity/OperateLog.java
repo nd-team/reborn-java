@@ -30,11 +30,6 @@ public class OperateLog extends BaseEntity {
     @Column(name = "modules", nullable = false, columnDefinition = "VARCHAR(50)   COMMENT '模块'")
     private String modules;
 
-    /**
-     * 功能
-     */
-    @Column(name = "function", nullable = false, columnDefinition = "VARCHAR(50)   COMMENT '功能'")
-    private String function;
 
     /**
      * 操作内容
@@ -52,7 +47,7 @@ public class OperateLog extends BaseEntity {
      * 操作用户
      */
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "user_id", nullable = false, unique = true, columnDefinition = "VARCHAR(36) COMMENT '所属用户' ")
+    @JoinColumn(name = "user_id", nullable = false, columnDefinition = "VARCHAR(36) COMMENT '所属用户' ")
     private User user;
 
 
@@ -70,14 +65,6 @@ public class OperateLog extends BaseEntity {
 
     public void setModules(String modules) {
         this.modules = modules;
-    }
-
-    public String getFunction() {
-        return function;
-    }
-
-    public void setFunction(String function) {
-        this.function = function;
     }
 
     public String getContent() {

@@ -20,7 +20,6 @@ public class UserApiImpl implements UserAPI {
     @Autowired
     private UserSer userSer;
 
-
     @Override
     public String publicKey() throws SerException {
         return userSer.publicKey();

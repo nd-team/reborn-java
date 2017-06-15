@@ -4,6 +4,7 @@ import com.alibaba.dubbo.rpc.RpcContext;
 import com.bjike.reborn.common.api.constant.RpcCommon;
 import com.bjike.reborn.common.consumer.http.ResponseContext;
 import com.bjike.reborn.common.consumer.restful.ActResult;
+import com.bjike.reborn.common.utils.token.IpUtil;
 import com.bjike.reborn.user.api.UserAPI;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.method.HandlerMethod;
@@ -41,15 +42,15 @@ public class LoginIntercept extends HandlerInterceptorAdapter {
             token = obj.toString();
         }
         if (!handler.getClass().isAssignableFrom(HandlerMethod.class)) {
-            return validateLogin(token, response);
+            return validateLogin(token,request, response);
         }
         Method method = ((HandlerMethod) handler).getMethod();
         Class<?> clazz = method.getDeclaringClass();
         //该类或者方法上是否有登录安全认证注解
         if (clazz.isAnnotationPresent(LoginAuth.class) || method.isAnnotationPresent(LoginAuth.class)) {
-            return validateLogin(token, response);
+            return validateLogin(token,request, response);
         }
-        handlerUserToken(token);
+        handlerUserToken(token,request);
         return true;
 
     }
@@ -66,10 +67,10 @@ public class LoginIntercept extends HandlerInterceptorAdapter {
     }
 
 
-    private boolean validateLogin(String token, HttpServletResponse response) throws IOException {
+    private boolean validateLogin(String token,HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             if (StringUtils.isNotBlank(token) && null != userAPI.currentUser(token)) {
-                handlerUserToken(token);
+                handlerUserToken(token,request);
                 return true;
             } else {
                 handlerNotHasLogin(response, "用户未登录！");
@@ -87,12 +88,15 @@ public class LoginIntercept extends HandlerInterceptorAdapter {
      *
      * @return
      */
-    private void handlerUserToken(String token) {
+    private void handlerUserToken(String token,HttpServletRequest request) {
+        RpcContext.getContext().setAttachment(RpcCommon.IP, IpUtil.getIp(request));
         if (StringUtils.isNotBlank(token)) {
             RpcContext.getContext().setAttachment(RpcCommon.USER_TOKEN, token);
 
         }
     }
+
+
 
     /**
      * 未登录处理

@@ -22,11 +22,6 @@ public class OperateLogVO {
     private String modules;
 
     /**
-     * 功能
-     */
-    private String function;
-
-    /**
      * 操作内容
      */
     private String content;
@@ -56,14 +51,6 @@ public class OperateLogVO {
 
     public void setModules(String modules) {
         this.modules = modules;
-    }
-
-    public String getFunction() {
-        return function;
-    }
-
-    public void setFunction(String function) {
-        this.function = function;
     }
 
     public String getContent() {

@@ -1,6 +1,7 @@
 package com.bjike.reborn.user.api;
 
 import com.bjike.reborn.common.api.exception.SerException;
+import com.bjike.reborn.common.provider.aspect.Operate;
 import com.bjike.reborn.user.bo.DepartmentBO;
 import com.bjike.reborn.user.service.DepartmentSer;
 import com.bjike.reborn.user.to.DepartmentTO;
@@ -23,7 +24,7 @@ public class DepartmentApiImpl implements DepartmentAPI {
     @Autowired
     private DepartmentSer departmentSer;
 
-
+    @Operate(name = "获取部门树")
     @Override
     public List<DepartmentBO> treeData(String id) throws SerException {
         return departmentSer.treeData(id);

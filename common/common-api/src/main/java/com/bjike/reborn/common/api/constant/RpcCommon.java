@@ -16,4 +16,8 @@ public class RpcCommon {
      * 存储用户登录令牌
      */
     public static final String STORAGE_TOKEN = "storageToken";
+    /**
+     * 用户登录ip
+     */
+    public static final String IP = "ip";
 }

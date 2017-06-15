@@ -18,10 +18,6 @@ public class OperateLogBO extends BaseBO {
      */
     private String modules;
 
-    /**
-     * 功能
-     */
-    private String function;
 
     /**
      * 操作内容
@@ -34,9 +30,24 @@ public class OperateLogBO extends BaseBO {
     private String ip;
 
     /**
+     * 用户令牌
+     */
+    private String token;
+
+    /**
      * 操作用户
      */
     private String username;
+
+    private String systemNO;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public String getModules() {
         return modules;
@@ -46,13 +57,6 @@ public class OperateLogBO extends BaseBO {
         this.modules = modules;
     }
 
-    public String getFunction() {
-        return function;
-    }
-
-    public void setFunction(String function) {
-        this.function = function;
-    }
 
     public String getContent() {
         return content;
@@ -76,5 +80,13 @@ public class OperateLogBO extends BaseBO {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getSystemNO() {
+        return systemNO;
+    }
+
+    public void setSystemNO(String systemNO) {
+        this.systemNO = systemNO;
     }
 }

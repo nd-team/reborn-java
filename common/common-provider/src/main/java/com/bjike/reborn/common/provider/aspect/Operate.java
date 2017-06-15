@@ -1,4 +1,4 @@
-package com.bjike.reborn.user.annotation;
+package com.bjike.reborn.common.provider.aspect;
 
 import java.lang.annotation.*;
 
@@ -13,6 +13,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Operate {
-    String method() default "";
     String name() default "";
 }

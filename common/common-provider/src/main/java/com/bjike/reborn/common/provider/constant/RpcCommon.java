@@ -10,4 +10,5 @@ package com.bjike.reborn.common.provider.constant;
 public class RpcCommon {
     public static final String USER_TOKEN = "userToken";
     public static final String STORAGE_TOKEN = "storageToken";
+    public static final String IP = "ip";
 }
